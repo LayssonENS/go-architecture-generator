@@ -1,0 +1,10 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is Architecture Generator API in Go.",
+        "title": "Go Architecture Generator",
+        "contact": {},
+        "version": "1.0"
+    },
+    "paths": {}
+}

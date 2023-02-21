@@ -17,6 +17,9 @@ import (
 	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
+// @title Go Architecture Generator
+// @version 1.0
+// @description This is Architecture Generator API in Go.
 func main() {
 	ctx := context.Background()
 	log := logrus.New()

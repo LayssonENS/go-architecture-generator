@@ -1,0 +1,7 @@
+info:
+  contact: {}
+  description: This is Architecture Generator API in Go.
+  title: Go Architecture Generator
+  version: "1.0"
+paths: {}
+swagger: "2.0"
