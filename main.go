@@ -26,7 +26,7 @@ func main() {
 
 	router := gin.Default()
 
-	router.GET("/genealogy/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+	router.GET("/generator/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	gin.SetMode(gin.ReleaseMode)
 	if config.GetEnv().Debug {
