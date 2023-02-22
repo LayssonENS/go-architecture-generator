@@ -1,7 +1,53 @@
+definitions:
+  domain.ErrorResponse:
+    properties:
+      error:
+        type: string
+    type: object
+  domain.GenerateRequest:
+    properties:
+      birth_date:
+        type: string
+      email:
+        type: string
+      name:
+        minLength: 3
+        type: string
+    required:
+    - email
+    - name
+    type: object
 info:
   contact: {}
-  description: This is Architecture Generator API in Go.
-  title: Go Architecture Generator
-  version: "1.0"
-paths: {}
+paths:
+  /v1/generate:
+    post:
+      consumes:
+      - application/json
+      description: Create template
+      parameters:
+      - description: Payload
+        in: body
+        name: Payload
+        required: true
+        schema:
+          $ref: '#/definitions/domain.GenerateRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+      summary: Route generate
+      tags:
+      - Generate
 swagger: "2.0"

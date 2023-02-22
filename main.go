@@ -10,6 +10,7 @@ import (
 	"time"
 
 	"github.com/LayssonENS/go-architecture-generator/config"
+	_ "github.com/LayssonENS/go-architecture-generator/docs"
 	"github.com/gin-gonic/gin"
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
@@ -20,6 +21,7 @@ import (
 // @title Go Architecture Generator
 // @version 1.0
 // @description This is Architecture Generator API in Go.
+
 func main() {
 	ctx := context.Background()
 	log := logrus.New()
