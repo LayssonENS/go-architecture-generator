@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurações do Projeto Go</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-header">
+                    Configurações do Projeto Go
+                </div>
+                <div class="card-body">
+                    <form id="projectForm">
+                        <div class="form-group">
+                            <label for="projectName">Nome do Projeto:</label>
+                            <input type="text" id="projectName" name="projectName" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="framework">Framework:</label>
+                            <select id="framework" name="framework" class="form-control">
+                                <option value="gin">Gin</option>
+                                <option value="fasthttp">FastHTTP</option>
+                                <option value="chi">Chi</option>
+                                <option value="net/http">net/http</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="database">Base de Dados:</label>
+                            <select id="database" name="database" class="form-control">
+                                <option value="none">Sem Banco</option>
+                                <option value="mysql">MySQL</option>
+                                <option value="sqlite">SQLite</option>
+                                <option value="postgres">PostgreSQL</option>
+                                <option value="mongo">MongoDB</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" id="auth" name="auth">
+                            <label class="form-check-label" for="auth">Autenticação</label>
+                        </div>
+
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" id="cache" name="cache">
+                            <label class="form-check-label" for="cache">Cache com Redis</label>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="jsonData">Struct (JSON):</label>
+                            <textarea id="jsonData" name="jsonData" rows="4" class="form-control" required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Gerar Projeto</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="./js/main.js"></script>
+</body>
+</html>

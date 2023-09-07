@@ -19,5 +19,5 @@ type Generate struct {
 }
 
 type GenerateUseCase interface {
-	Generate(person GenerateRequest) error
+	Generate(config ProjectConfig) error
 }

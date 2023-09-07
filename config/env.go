@@ -7,7 +7,7 @@ import (
 )
 
 type Environment struct {
-	Port   int  `env:"PORT,default=8000"`
+	Port   int  `env:"PORT,default=8080"`
 	Debug  bool `env:"DEBUG,default=false"`
 	Extras env.EnvSet
 }

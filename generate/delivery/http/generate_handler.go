@@ -25,19 +25,20 @@ func NewGenerateHandler(routerGroup *gin.Engine, us domain.GenerateUseCase) {
 // @Tags Generate
 // @Accept  json
 // @Produce  json
-// @Param Payload body domain.GenerateRequest true "Payload"
+// @Param Payload body domain.ProjectConfig true "Payload"
 // @Success 201 {object} string
 // @Failure 400 {object} domain.ErrorResponse
 // @Failure 422 {object} domain.ErrorResponse
 // @Router /v1/generate [POST]
 func (h *GenerateHandler) GenerateArchitecture(c *gin.Context) {
-	var generate domain.GenerateRequest
-	if err := c.ShouldBindJSON(&generate); err != nil {
-		c.JSON(http.StatusUnprocessableEntity, domain.ErrorResponse{ErrorMessage: err.Error()})
+	var config domain.ProjectConfig
+
+	if err := c.ShouldBindJSON(&config); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
-	err := h.GUseCase.Generate(generate)
+	err := h.GUseCase.Generate(config)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, domain.ErrorResponse{ErrorMessage: err.Error()})
 		return
