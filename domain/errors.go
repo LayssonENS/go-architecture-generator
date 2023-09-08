@@ -17,5 +17,5 @@ type ProjectConfig struct {
 	Database    string `json:"database"`
 	Auth        bool   `json:"auth"`
 	Cache       bool   `json:"cache"`
-	JsonData    string `json:"jsonData"`
+	StructName  string `json:"structName"`
 }

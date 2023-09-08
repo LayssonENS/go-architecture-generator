@@ -8,7 +8,7 @@ document.getElementById('projectForm').addEventListener('submit', function(event
         database: formData.get('database'),
         auth: formData.get('auth') === "on",  // Retorna true se estiver marcado, caso contrário, false
         cache: formData.get('cache') === "on",  // Retorna true se estiver marcado, caso contrário, false
-        jsonData: formData.get('jsonData')
+        structName: formData.get('structName')
     };
 
     fetch('http://localhost:8080/v1/generate', {
