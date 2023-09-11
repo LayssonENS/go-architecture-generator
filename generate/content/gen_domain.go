@@ -9,7 +9,7 @@ import (
 	"github.com/LayssonENS/go-architecture-generator/domain"
 )
 
-var structTemplate = `package {{.PackageName}}
+var structTemplate = `package domain
 
 import "time"
 
@@ -19,6 +19,18 @@ type {{.StructName}} struct {
 	CreatedAt time.Time ` + "`json:\"createdAt\"`" + `
 	UpdatedAt time.Time ` + "`json:\"updatedAt\"`" + `
 	IsActive  bool      ` + "`json:\"isActive\"`" + `
+}
+
+type {{.StructName}}UseCase interface {
+	GetByID(id int64) ({{.StructName}}, error)
+	Create{{.StructName}}({{.StructName}} {{.StructName}}) error
+	GetAll{{.StructName}}() ([]{{.StructName}}, error)
+}
+
+type {{.StructName}}Repository interface {
+	GetByID(id int64) ({{.StructName}}, error)
+	Create{{.StructName}}({{.StructName}} {{.StructName}}) error
+	GetAll{{.StructName}}() ([]{{.StructName}}, error)
 }
 `
 

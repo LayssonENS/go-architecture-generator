@@ -15,7 +15,7 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/{{.ProjectPath}}/domain"
+	"{{.ProjectPath}}/domain"
 	"github.com/gin-gonic/gin"
 )
 
@@ -114,7 +114,7 @@ func CreateHandlerFile(config domain.ProjectConfig) error {
 		return err
 	}
 
-	filePath := fmt.Sprintf("%s/%s/delivery/%s_handler.go", config.ProjectName, strings.ToLower(config.StructName), strings.ToLower(config.StructName))
+	filePath := fmt.Sprintf("%s/%s/delivery/http/%s_handler.go", config.ProjectName, strings.ToLower(config.StructName), strings.ToLower(config.StructName))
 	file, err := os.Create(filePath)
 	if err != nil {
 		return err
@@ -127,7 +127,7 @@ func CreateHandlerFile(config domain.ProjectConfig) error {
 		StructShortName string
 		StructLowerName string
 	}{
-		ProjectPath:     strings.ToLower(config.ProjectPath),
+		ProjectPath:     config.ProjectPath,
 		StructName:      config.StructName,
 		StructShortName: strings.ToLower(string(config.StructName[0])),
 		StructLowerName: strings.ToLower(config.StructName),

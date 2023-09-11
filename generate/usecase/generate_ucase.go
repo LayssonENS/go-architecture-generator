@@ -61,6 +61,12 @@ func (f *generateUseCase) Generate(config domain.ProjectConfig) error {
 		return err
 	}
 
+	err = content.CreateDockerFiles(config)
+	if err != nil {
+		fmt.Println(err)
+		return err
+	}
+
 	fmt.Println(config)
 	return nil
 }

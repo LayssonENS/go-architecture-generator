@@ -12,7 +12,7 @@ import (
 const useCaseTemplate = `package usecase
 
 import (
-	"github.com/{{.ProjectPath}}/domain"
+	"{{.ProjectPath}}/domain"
 )
 
 type {{.StructLowerName}}UseCase struct {

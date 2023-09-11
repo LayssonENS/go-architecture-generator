@@ -44,5 +44,5 @@ func (h *GenerateHandler) GenerateArchitecture(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusCreated, gin.H{"msg": "Created"})
+	c.JSON(http.StatusCreated, gin.H{"msg": "Arch created successfully"})
 }

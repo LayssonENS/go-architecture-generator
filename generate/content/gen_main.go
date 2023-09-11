@@ -21,8 +21,7 @@ import (
 	"time"
 
 	"{{.ProjectPath}}/config"
-	"{{.ProjectPath}}/database"
-	_ "{{.ProjectPath}}/docs"
+	"{{.ProjectPath}}/config/database"
 	{{.StructName}}HttpDelivery "{{.ProjectPath}}/{{.StructNameLower}}/delivery/http"
 	{{.StructName}}Repository "{{.ProjectPath}}/{{.StructNameLower}}/repository"
 	{{.StructName}}UCase "{{.ProjectPath}}/{{.StructNameLower}}/usecase"
@@ -41,17 +40,17 @@ func main() {
 	ctx := context.Background()
 	log := logrus.New()
 
-	dbInstance, err := database.New{{.Database}}Connection(config.GetEnv().DbConfig)
+	dbInstance, err := database.New{{.Database}}Connection()
 	if err != nil {
 		log.WithError(err).Fatal("failed connection database")
 		return
 	}
 
-	err = database.DBMigrate(dbInstance, config.GetEnv().DbConfig)
-	if err != nil {
-		log.WithError(err).Fatal("failed to migrate")
-		return
-	}
+	//err = database.DBMigrate(dbInstance, config.GetEnv().DbConfig)
+	//if err != nil {
+	//	log.WithError(err).Fatal("failed to migrate")
+	//	return
+	//}
 
 	router := gin.Default()
 
@@ -111,7 +110,7 @@ func CreateMainGinFile(config domain.ProjectConfig) error {
 		"ProjectName":     config.ProjectName,
 		"ProjectPath":     config.ProjectPath,
 		"Framework":       config.Framework,
-		"Database":        config.Database,
+		"Database":        strings.ToUpper(string(config.Database[0])) + config.Database[1:],
 		"StructName":      config.StructName,
 		"StructNameLower": strings.ToLower(config.StructName),
 	}

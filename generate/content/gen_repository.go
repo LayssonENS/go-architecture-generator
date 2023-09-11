@@ -15,7 +15,7 @@ import (
 	"database/sql"
 	"time"
 
-	"github.com/{{.ProjectPath}}/domain"
+	"{{.ProjectPath}}/domain"
 )
 
 const dateLayout = "2006-01-02"
