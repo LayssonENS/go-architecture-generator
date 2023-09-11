@@ -19,52 +19,22 @@ func (f *generateUseCase) Generate(config domain.ProjectConfig) error {
 		return err
 	}
 
-	err = content.CreateMainGinFile(config)
-	if err != nil {
-		fmt.Println(err)
-		return err
-	}
+	errChan := make(chan error, 9)
 
-	err = content.CreateEnvFile(config)
-	if err != nil {
-		fmt.Println(err)
-		return err
-	}
+	go func() { errChan <- content.CreateMainGinFile(config) }()
+	go func() { errChan <- content.CreateEnvFile(config) }()
+	go func() { errChan <- content.CreateDatabaseFile(config) }()
+	go func() { errChan <- content.CreateHandlerFile(config) }()
+	go func() { errChan <- content.CreateGenericStructFile(config) }()
+	go func() { errChan <- content.CreateUseCaseFile(config) }()
+	go func() { errChan <- content.CreateRepositoryFile(config) }()
+	go func() { errChan <- content.CreateDockerFiles(config) }()
 
-	err = content.CreateDatabaseFile(config)
-	if err != nil {
-		fmt.Println(err)
-		return err
-	}
-
-	err = content.CreateHandlerFile(config)
-	if err != nil {
-		fmt.Println(err)
-		return err
-	}
-
-	err = content.CreateGenericStructFile(config)
-	if err != nil {
-		fmt.Println(err)
-		return err
-	}
-
-	err = content.CreateUseCaseFile(config)
-	if err != nil {
-		fmt.Println(err)
-		return err
-	}
-
-	err = content.CreateRepositoryFile(config)
-	if err != nil {
-		fmt.Println(err)
-		return err
-	}
-
-	err = content.CreateDockerFiles(config)
-	if err != nil {
-		fmt.Println(err)
-		return err
+	for i := 0; i < 8; i++ {
+		if err := <-errChan; err != nil {
+			fmt.Println(err)
+			return err
+		}
 	}
 
 	fmt.Println(config)
