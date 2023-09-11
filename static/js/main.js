@@ -20,12 +20,25 @@ document.getElementById('projectForm').addEventListener('submit', function(event
         },
         body: JSON.stringify(data)
     })
-        .then(response => response.json())
+        .then(response => {
+            if (response.status === 201) {
+                return response.json();
+            } else {
+                throw new Error('Erro ao gerar projeto.');
+            }
+        })
         .then(data => {
             console.log(data);
-            // Aqui você pode processar a resposta, por exemplo, mostrar uma mensagem de sucesso.
+            const notification = document.getElementById('notification');
+            notification.className = 'alert alert-success';
+            notification.textContent = data.msg;
+            notification.style.display = 'block';
         })
         .catch(error => {
             console.error('Erro na requisição:', error);
+            const notification = document.getElementById('notification');
+            notification.className = 'alert alert-danger';
+            notification.textContent = 'Erro na requisição: ' + error.message;
+            notification.style.display = 'block';
         });
 });
