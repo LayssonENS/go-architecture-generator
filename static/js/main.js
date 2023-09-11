@@ -6,10 +6,12 @@ document.getElementById('projectForm').addEventListener('submit', function(event
         projectName: formData.get('projectName'),
         framework: formData.get('framework'),
         database: formData.get('database'),
-        auth: formData.get('auth') === "on",  // Retorna true se estiver marcado, caso contrário, false
-        cache: formData.get('cache') === "on",  // Retorna true se estiver marcado, caso contrário, false
+        auth: formData.get('auth') === "on",
+        cache: formData.get('cache') === "on",
+        projectPath: formData.get('projectPath'),
         structName: formData.get('structName')
     };
+
 
     fetch('http://localhost:8080/v1/generate', {
         method: 'POST',
