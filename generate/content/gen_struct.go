@@ -2,7 +2,6 @@ package content
 
 import (
 	"fmt"
-	_ "html/template"
 	"os"
 	"strings"
 

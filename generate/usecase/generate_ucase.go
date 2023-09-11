@@ -21,11 +21,43 @@ func (f *generateUseCase) Generate(config domain.ProjectConfig) error {
 
 	err = content.CreateMainGinFile(config)
 	if err != nil {
+		fmt.Println(err)
+		return err
+	}
+
+	err = content.CreateEnvFile(config)
+	if err != nil {
+		fmt.Println(err)
+		return err
+	}
+
+	err = content.CreateDatabaseFile(config)
+	if err != nil {
+		fmt.Println(err)
+		return err
+	}
+
+	err = content.CreateHandlerFile(config)
+	if err != nil {
+		fmt.Println(err)
 		return err
 	}
 
 	err = content.CreateGenericStructFile(config)
 	if err != nil {
+		fmt.Println(err)
+		return err
+	}
+
+	err = content.CreateUseCaseFile(config)
+	if err != nil {
+		fmt.Println(err)
+		return err
+	}
+
+	err = content.CreateRepositoryFile(config)
+	if err != nil {
+		fmt.Println(err)
 		return err
 	}
 

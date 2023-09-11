@@ -14,11 +14,11 @@ var structTemplate = `package {{.PackageName}}
 import "time"
 
 type {{.StructName}} struct {
-	ID        int64
-	Text      string
-	CreatedAt time.Time
-	UpdatedAt time.Time
-	IsActive  bool
+	ID        int64     ` + "`json:\"id\"`" + `
+	Text      string    ` + "`json:\"text\"`" + `
+	CreatedAt time.Time ` + "`json:\"createdAt\"`" + `
+	UpdatedAt time.Time ` + "`json:\"updatedAt\"`" + `
+	IsActive  bool      ` + "`json:\"isActive\"`" + `
 }
 `
 
