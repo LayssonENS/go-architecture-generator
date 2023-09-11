@@ -13,6 +13,7 @@ type ErrorResponse struct {
 
 type ProjectConfig struct {
 	ProjectName string `json:"projectName"`
+	ProjectPath string `json:"projectPath"`
 	Framework   string `json:"framework"`
 	Database    string `json:"database"`
 	Auth        bool   `json:"auth"`
